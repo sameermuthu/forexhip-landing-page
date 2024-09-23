@@ -3,54 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Forexhip Scalper v3 - Secure Payment</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            background-color: #1f1f1f;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px 5px #00ffcc;
+            padding: 20px;
+            text-align: center;
+        }
+        .container h1 {
+            color: #00ffcc;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .container p {
+            margin-bottom: 20px;
+        }
+        .iframe-container {
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid #00ffcc;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #0d0d0d;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+        footer {
+            margin-top: 20px;
+            color: #757575;
+            font-size: 0.8em;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+            .container h1 {
+                font-size: 2em;
+            }
+            iframe {
+                height: 500px;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex flex-col">
-    <header class="gradient-bg p-4 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <img src="logo.png" alt="Forexhip Logo" class="w-12 h-12">
-            <h1 class="text-xl font-bold">Forexhip Scalper v3</h1>
+<body>
+    <div class="container">
+        <h1>Complete Your Payment</h1>
+        <p>Please use the form below to complete your payment for Forexhip Scalper v3.</p>
+        
+        <div class="iframe-container">
+            <iframe id="paymentFrame" src=""></iframe>
         </div>
-    </header>
-
-    <main class="flex-grow container mx-auto px-4 py-8 flex flex-col items-center justify-center">
-        <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden w-full max-w-2xl">
-            <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-4">
-                <h2 class="text-2xl font-bold text-center">Secure Bitcoin Payment</h2>
-            </div>
-            <div class="p-6">
-                <div class="aspect-w-16 aspect-h-9 mb-6">
-                    <iframe 
-                        id="paymentFrame"
-                        src=""
-                        class="w-full h-full"
-                        frameborder="0"
-                        allowtransparency="true"
-                    ></iframe>
-                </div>
-                <p class="text-gray-400 text-sm text-center mt-4">
-                    Your payment is processed securely. If you have any issues, please contact our 
-                    <a href="https://t.me/forexhipadmin" class="text-blue-400 hover:text-blue-300">support team</a>.
-                </p>
-            </div>
-        </div>
-    </main>
-
-    <footer class="gradient-bg p-4 mt-8">
-        <div class="container mx-auto text-center text-sm text-gray-300">
-            &copy; 2024 Forexhip. All rights reserved.
-        </div>
-    </footer>
+        
+        <footer>
+            <p>&copy; 2024 Forexhip. All Rights Reserved.</p>
+        </footer>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
