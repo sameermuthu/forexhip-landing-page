@@ -107,7 +107,6 @@
     );
 
     const LandingPage = () => {
-      // Updated image paths based on the provided filenames
       const logoSrc = "./logo.png";
       const heroImageSrc = "./screenshot.png";
       const productScreenshotSrc = "./images/productphoto.jpg";
@@ -115,7 +114,7 @@
         "./images/photo1.jpg",
         "./images/photo2.jpg",
         "./images/photo3.jpg",
-        "./images/photo4.jpg" // Reusing photo2.jpg as the fourth photo since photo1.jpg is not provided
+        "./images/photo4.jpg"
       ];
 
       return (
@@ -123,7 +122,7 @@
           <header className="container mx-auto px-4 py-4">
             <nav className="flex justify-between items-center">
               <div className="flex items-center">
-                <img src={logoSrc} alt="Forexhip Logo" className="w-8 h-8 mr-2" />
+                <img src={logoSrc} alt="Forexhip Logo" className="w-16 h-16 rounded-full mr-2" /> {/* Make logo round */}
                 <h1 className="text-xl font-bold">Forexhip</h1>
               </div>
               <div className="space-x-4 text-sm">
@@ -196,52 +195,13 @@
             </section>
 
             <section className="mb-12 bg-white bg-opacity-5 p-8 rounded-lg">
-              <h2 className="text-3xl font-bold text-center mb-6">What's New in Forexhip Scalper v3</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-teal-500 to-blue-600 p-6 rounded-lg shadow-lg">
-                  <h3 className="text-xl font-semibold mb-2">Advanced Supply and Demand Analysis</h3>
-                  <p className="text-white">Identify key market turning points with our state-of-the-art supply and demand zone detection.</p>
-                </div>
-                <div className="bg-gradient-to-br from-purple-500 to-pink-600 p-6 rounded-lg shadow-lg">
-                  <h3 className="text-xl font-semibold mb-2">Real-Time Trading Dashboard</h3>
-                  <p className="text-white">Get a comprehensive view of your trades with live updates on price, profit, time frame, and more.</p>
-                </div>
-                <div className="bg-gradient-to-br from-yellow-500 to-red-600 p-6 rounded-lg shadow-lg">
-                  <h3 className="text-xl font-semibold mb-2">Instant Trade Management</h3>
-                  <p className="text-white">Take control of your positions with our 'Close All EA' feature, allowing for quick exits when needed.</p>
-                </div>
-                <div className="bg-gradient-to-br from-green-500 to-teal-600 p-6 rounded-lg shadow-lg">
-                  <h3 className="text-xl font-semibold mb-2">Enhanced Non-Repaint Algorithm</h3>
-                  <p className="text-white">Experience even more reliable signals with our improved non-repaint technology.</p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="md:w-1/2">
-                  <h2 className="text-3xl font-bold mb-4">Transform Your Trading Strategy</h2>
-                  <p className="mb-4 text-lg">Forexhip Scalper v3 isn't just an indicator; it's your gateway to consistent profitability in the Forex market. Our cutting-edge tools are designed to give you a significant advantage:</p>
-                  <ul className="list-disc list-inside mb-4 space-y-2">
-                    <li>Precise entry and exit points based on supply and demand</li>
-                    <li>Real-time market analysis across multiple timeframes</li>
-                    <li>Instant trade management for quick risk mitigation</li>
-                    <li>Comprehensive dashboard for informed decision-making</li>
-                    <li>Non-repaint signals for reliable trade execution</li>
-                  </ul>
-                  <p className="text-lg font-semibold">Don't let another profitable trade slip away. Upgrade your trading arsenal today!</p>
-                </div>
-                <div className="md:w-1/2">
-                  <img src={productScreenshotSrc} alt="Forexhip Scalper v3 Dashboard" className="rounded-lg shadow-lg" />
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-bold text-center mb-6">See Forexhip Scalper v3 in Action</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {additionalPhotos.map((photo, index) => (
-                  <img key={index} src={photo} alt={`Forexhip Scalper v3 Visual ${index + 1}`} className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300" />
+              <h2 className="text-3xl font-bold text-center mb-6">What's New in v3?</h2>
+              <img src={productScreenshotSrc} alt="Product Screenshot" className="rounded-lg shadow-lg mb-4" />
+              <p className="text-lg mb-4">Forexhip Scalper v3 comes with enhanced algorithms and new features to maximize your trading success.</p>
+              <h3 className="font-semibold mb-2">Additional Screenshots:</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {additionalPhotos.map((src, index) => (
+                  <img key={index} src={src} alt={`Additional Screenshot ${index + 1}`} className="rounded-lg shadow-lg" />
                 ))}
               </div>
             </section>
@@ -251,82 +211,61 @@
               <p className="text-center mb-4 text-lg">Watch our step-by-step guide to get Forexhip Scalper v3 up and running in minutes:</p>
               <div className="aspect-w-16 aspect-h-9">
                 <iframe
-                  src="https://www.youtube.com/embed/q7MgSdTgui0"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
+                  width="1425" height="650" 
+                  src="https://www.youtube.com/embed/q7MgSdTgui0" 
+                  title="How to install Forexhip Scalper V3 | instruction" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen 
                   className="w-full h-full rounded-lg shadow-lg"
                 ></iframe>
               </div>
             </section>
 
             <section id="testimonials" className="mb-12">
-              <h2 className="text-3xl font-bold text-center mb-6">Success Stories from Our Traders</h2>
+              <h2 className="text-3xl font-bold text-center mb-6">What Our Users Say</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Testimonial 
-                  name="Sarah Johnson"
-                  role="Professional Forex Trader"
-                  text="Forexhip Scalper v3 has been a game-changer for my trading career. The supply and demand analysis is spot-on, and the live dashboard keeps me in control of my trades like never before. My win rate has increased by 30% since I started using it!"
+                  name="Jane Doe"
+                  role="Forex Trader"
+                  text="Forexhip Scalper v3 has completely transformed my trading strategy!"
                 />
                 <Testimonial 
-                  name="Michael Anderson"
-                  role="Retail Forex Investor"
-                  text="As a part-time trader, I needed something reliable and easy to use. Forexhip Scalper v3 delivered beyond my expectations. The non-repaint signals are incredibly accurate, and the one-click trade management saves me precious time. It's worth every penny!"
+                  name="John Smith"
+                  role="Professional Trader"
+                  text="I achieved consistent profits thanks to the high accuracy signals."
                 />
                 <Testimonial 
-                  name="Emily Chen"
-                  role="Forex Fund Manager"
-                  text="I've used many indicators over the years, but Forexhip Scalper v3 stands out. The multi-timeframe analysis gives me a comprehensive view of the market, and the accuracy of the signals is impressive. It's now an integral part of my trading strategy."
+                  name="Emily Johnson"
+                  role="Part-Time Trader"
+                  text="The user interface is very intuitive and easy to use."
                 />
                 <Testimonial 
-                  name="David Müller"
-                  role="Experienced Scalper"
-                  text="The speed and accuracy of Forexhip Scalper v3 are unmatched. I can confidently take quick trades knowing I have reliable signals and instant trade management at my fingertips. My profitability has soared since incorporating this tool into my trading."
+                  name="Michael Brown"
+                  role="Investor"
+                  text="I've tried various indicators, but Forexhip is by far the best!"
                 />
               </div>
             </section>
 
             <section id="faq" className="mb-12">
               <h2 className="text-3xl font-bold text-center mb-6">Frequently Asked Questions</h2>
-              <div className="space-y-4">
-                {[
-                  {
-                    q: "Is Forexhip Scalper v3 suitable for beginners?",
-                    a: "Absolutely! While Forexhip Scalper v3 is powerful enough for professional traders, its user-friendly interface and clear signals make it perfect for beginners too. We also provide comprehensive guides and support to help you get started."
-                  },
-                  {
-                    q: "How does the supply and demand analysis work?",
-                    a: "Our advanced algorithm analyzes market structure to identify key supply and demand zones. These zones are areas where price is likely to reverse, providing you with high-probability entry and exit points for your trades."
-                  },
-                  {
-                    q: "Can I use Forexhip Scalper v3 with any broker?",
-                    a: "Yes, Forexhip Scalper v3 is compatible with any broker that supports MetaTrader 4 (MT4). This includes most major Forex brokers worldwide."
-                  },
-                  {
-                    q: "What kind of support do you offer after purchase?",
-                    a: "We provide 24/7 customer support via Telegram. Our team of experienced traders and technical experts are always ready to assist you with installation, setup, and any questions you may have about using the indicator."
-                  },
-                  {
-                    q: "Is this work on mt5?",
-                    a: "For now its only works in Mt4,you can open account in any broker support mt4."
-                  }
-                ].map((item, index) => (
-                  <div key={index} className="bg-white bg-opacity-10 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-2">{item.q}</h3>
-                    <p className="text-gray-300">{item.a}</p>
-                  </div>
-                ))}
+              <div className="bg-white bg-opacity-5 p-6 rounded-lg">
+                <h3 className="font-semibold">Q: What is Forexhip Scalper v3?</h3>
+                <p className="text-gray-300">A: It’s an advanced trading indicator designed to provide high accuracy signals for Forex trading.</p>
+                <h3 className="font-semibold">Q: Do I need prior trading experience?</h3>
+                <p className="text-gray-300">A: No, Forexhip is user-friendly and suitable for both beginners and experienced traders.</p>
+                <h3 className="font-semibold">Q: How do I install it?</h3>
+                <p className="text-gray-300">A: Please refer to our installation guide video above for step-by-step instructions.</p>
               </div>
             </section>
 
-            <section id="contact" className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Ready to Elevate Your Trading?</h2>
-              <p className="mb-6 text-lg">Join thousands of successful traders using Forexhip Scalper v3. Get started today and transform your trading journey!</p>
-              <div className="flex flex-col items-center justify-center gap-4">
-                <BitcoinPaymentButton />
-                <AlternativePaymentButton />
-                <MessageAdminButton />
-              </div>
+            <section id="contact" className="mb-12 text-center">
+              <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
+              <p className="mb-4">For any inquiries or support, please reach out to us:</p>
+              <a href="https://t.me/forexhipadmin" className="text-teal-400 hover:text-teal-300 transition duration-300">
+                Contact Forexhip Admin
+              </a>
             </section>
           </main>
 
