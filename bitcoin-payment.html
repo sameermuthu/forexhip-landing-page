@@ -9,36 +9,48 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
+            background-color: #1a1a2e;
         }
-        @keyframes gradient {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
+        .neon-border {
+            box-shadow: 0 0 5px #16d9e3, 0 0 10px #16d9e3, 0 0 20px #16d9e3, 0 0 40px #16d9e3;
+            animation: neon-pulse 1.5s ease-in-out infinite alternate;
         }
-        .animate-gradient {
-            background-size: 200% 200%;
-            animation: gradient 15s ease infinite;
+        @keyframes neon-pulse {
+            from {
+                box-shadow: 0 0 5px #16d9e3, 0 0 10px #16d9e3, 0 0 20px #16d9e3, 0 0 40px #16d9e3;
+            }
+            to {
+                box-shadow: 0 0 10px #16d9e3, 0 0 20px #16d9e3, 0 0 40px #16d9e3, 0 0 80px #16d9e3;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #16d9e3, #30c7ec, #46aef7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-teal-900 min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white bg-opacity-10 p-8 rounded-xl shadow-2xl max-w-md w-full backdrop-blur-md">
-        <img src="logo.png" alt="Forexhip Logo" class="w-20 h-20 mx-auto mb-6">
-        <h1 class="text-3xl font-bold text-white mb-6 text-center">Forexhip Scalper v3</h1>
-        <div class="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white rounded-lg p-4 mb-6 text-center animate-gradient">
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-gray-900 p-8 rounded-xl shadow-2xl max-w-md w-full neon-border">
+        <div class="flex justify-center mb-6">
+            <img src="logo.png" alt="Forexhip Logo" class="w-24 h-24 rounded-full border-4 border-teal-400 shadow-lg">
+        </div>
+        <h1 class="text-3xl font-bold text-white mb-6 text-center gradient-text">Forexhip Scalper v3</h1>
+        <div class="bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600 text-white rounded-lg p-4 mb-6 text-center">
             <p class="font-bold text-xl">Secure Bitcoin Payment</p>
             <p class="text-sm mt-2">You're about to make a secure payment</p>
         </div>
-        <div class="text-white mb-6 space-y-2">
-            <p><strong>Product:</strong> Forexhip Scalper v3</p>
-            <p><strong>Price:</strong> $69 USD</p>
-            <p><strong>Payment Method:</strong> Bitcoin</p>
-            <p class="text-sm text-gray-300 mt-4">Your payment will be processed securely through our trusted payment partner.</p>
+        <div class="text-gray-300 mb-6 space-y-2">
+            <p><strong class="text-teal-400">Product:</strong> Forexhip Scalper v3</p>
+            <p><strong class="text-teal-400">Price:</strong> $69 USD</p>
+            <p><strong class="text-teal-400">Payment Method:</strong> Bitcoin</p>
+            <p class="text-sm text-gray-400 mt-4">Your payment will be processed securely through our trusted payment partner.</p>
         </div>
-        <button id="proceedButton" class="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white font-bold py-3 px-4 rounded-lg hover:from-yellow-500 hover:via-orange-600 hover:to-red-600 transition duration-300 ease-in-out transform hover:scale-105">
+        <button id="proceedButton" class="w-full bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600 text-white font-bold py-3 px-4 rounded-lg hover:from-teal-500 hover:via-blue-600 hover:to-purple-700 transition duration-300 ease-in-out transform hover:scale-105">
             Proceed to Payment
         </button>
-        <p class="text-sm text-gray-400 mt-4 text-center">By proceeding, you agree to our terms of service and privacy policy.</p>
+        <p class="text-sm text-gray-500 mt-4 text-center">By proceeding, you agree to our terms of service and privacy policy.</p>
     </div>
 
     <script>
