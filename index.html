@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forexhip Scalper v3 Landing Page</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons via CDN -->
+  <script type="module">
+    import * as lucide from 'https://cdn.skypack.dev/lucide-react';
+    window.lucide = lucide;
+  </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-teal-900 text-white">
+  <div id="root"></div>
+
+  <!-- React and ReactDOM via CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  
+  <!-- Babel for JSX transformation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Your React Code -->
+  <script type="text/babel">
+
+    const {
+      ChevronRight,
+      Check,
+      BarChart2,
+      Clock,
+      Target,
+      MessageCircle,
+      Star,
+      ExternalLink,
+      Send,
+      TrendingUp,
+      DollarSign,
+      RefreshCw
+    } = lucide;
+
+    const Feature = ({ icon: Icon, title, description }) => (
+      <div className="flex items-center p-4 bg-white bg-opacity-10 rounded-lg shadow-lg hover:bg-opacity-20 transition-all duration-300">
+        <Icon className="w-8 h-8 text-teal-400 mr-4 flex-shrink-0" />
+        <div>
+          <h3 className="text-lg font-semibold mb-1">{title}</h3>
+          <p className="text-gray-300 text-sm">{description}</p>
+        </div>
+      </div>
+    );
+
+    const Testimonial = ({ name, role, text }) => (
+      <div className="p-4 bg-white bg-opacity-5 rounded-lg shadow-lg">
+        <p className="text-gray-300 text-sm mb-3">"{text}"</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h4 className="font-semibold">{name}</h4>
+            <p className="text-xs text-gray-400">{role}</p>
+          </div>
+          <div className="flex">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+
+    const BitcoinPaymentButton = () => (
+      <a
+        href="https://pay-link.s3.us-west-2.amazonaws.com/index.html?uid=a71b0222efe3451f"
+        className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full overflow-hidden shadow-lg transition-all duration-300 ease-out hover:scale-105"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-yellow-400 to-orange-600 opacity-70 blur-lg filter group-hover:opacity-100 transition-opacity duration-300"></span>
+        <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-30 h-1/3"></span>
+        <span className="relative flex items-center">
+          <span className="mr-3 text-2xl">₿</span>
+          <span className="mr-2">Buy Now with Bitcoin</span>
+          <span className="bg-white bg-opacity-25 px-2 py-1 rounded text-sm font-normal">$69</span>
+        </span>
+      </a>
+    );
+
+    const AlternativePaymentButton = () => (
+      <a
+        href="https://t.me/forexhipadmin"
+        className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-teal-500 bg-transparent border-2 border-teal-500 rounded-full hover:bg-teal-500 hover:text-white transition-colors duration-300"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Don't have BTC? Click here for alternatives
+      </a>
+    );
+
+    const MessageAdminButton = () => (
+      <a
+        href="https://t.me/forexhipadmin"
+        className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-300"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Send className="w-5 h-5 mr-2" />
+        Message Forexhip Admin
+      </a>
+    );
+
+    const LandingPage = () => {
+      // Updated image paths based on the provided filenames
+      const logoSrc = "./images/logo.png";
+      const heroImageSrc = "./images/screenshot.png";
+      const productScreenshotSrc = "./images/productphoto.jpg";
+      const additionalPhotos = [
+        "./images/photo1.jpg",
+        "./images/photo2.jpg",
+        "./images/photo3.jpg",
+        "./images/photo4.jpg" // Reusing photo2.jpg as the fourth photo since photo1.jpg is not provided
+      ];
+
+      return (
+        <div>
+          <header className="container mx-auto px-4 py-4">
+            <nav className="flex justify-between items-center">
+              <div className="flex items-center">
+                <img src={logoSrc} alt="Forexhip Logo" className="w-8 h-8 mr-2" />
+                <h1 className="text-xl font-bold">Forexhip</h1>
+              </div>
+              <div className="space-x-4 text-sm">
+                <a href="#features" className="hover:text-teal-400 transition duration-300">Features</a>
+                <a href="#testimonials" className="hover:text-teal-400 transition duration-300">Testimonials</a>
+                <a href="#faq" className="hover:text-teal-400 transition duration-300">FAQ</a>
+                <a href="#contact" className="hover:text-teal-400 transition duration-300">Contact</a>
+              </div>
+            </nav>
+          </header>
+
+          <main className="container mx-auto px-4 py-8">
+            <section className="text-center mb-12">
+              <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent">
+                Forexhip Scalper v3
+              </h1>
+              <p className="text-xl mb-6 max-w-2xl mx-auto">
+                Revolutionize Your Forex Trading with Our Advanced Non-Repaint Indicator
+              </p>
+              <div className="flex flex-col items-center justify-center gap-4 mb-8">
+                <BitcoinPaymentButton />
+                <AlternativePaymentButton />
+                <MessageAdminButton />
+                <a href="#installation-video" className="py-2 px-6 bg-blue-700 text-white rounded-full text-base font-semibold hover:bg-blue-800 transition duration-300">
+                  Watch Installation Guide
+                </a>
+              </div>
+              <img src={heroImageSrc} alt="Forexhip Scalper v3 Hero" className="rounded-lg shadow-lg mx-auto" />
+            </section>
+
+            <section id="features" className="mb-12">
+              <h2 className="text-3xl font-bold text-center mb-6">Powerful Features for Profitable Trading</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Feature 
+                  icon={BarChart2}
+                  title="High Accuracy Signals"
+                  description="Achieve over 84% accuracy in forecasting price changes, giving you a significant edge in the market."
+                />
+                <Feature 
+                  icon={Clock}
+                  title="Multi-Timeframe Analysis"
+                  description="Optimize your trading with superior performance on M5, M15, and M30 timeframes."
+                />
+                <Feature 
+                  icon={Target}
+                  title="Versatile Asset Coverage"
+                  description="Trade confidently across any Forex pair and other assets, expanding your profitable opportunities."
+                />
+                <Feature 
+                  icon={MessageCircle}
+                  title="Smart Alert System"
+                  description="Stay informed with customizable alerts for potential trading opportunities, never miss a profitable entry."
+                />
+                <Feature 
+                  icon={TrendingUp}
+                  title="Supply and Demand Analysis"
+                  description="Leverage our advanced tool to analyze supply and demand zones, crucial for identifying key market reversals."
+                />
+                <Feature 
+                  icon={DollarSign}
+                  title="Live Trading Dashboard"
+                  description="Monitor current price, profit, time frame, and pair name in real-time for informed decision making."
+                />
+                <Feature 
+                  icon={RefreshCw}
+                  title="One-Click Trade Management"
+                  description="Close all trades instantly with our 'Close All EA' feature, providing quick risk management."
+                />
+              </div>
+            </section>
+
+            <section className="mb-12 bg-white bg-opacity-5 p-8 rounded-lg">
+              <h2 className="text-3xl font-bold text-center mb-6">What's New in Forexhip Scalper v3</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-gradient-to-br from-teal-500 to-blue-600 p-6 rounded-lg shadow-lg">
+                  <h3 className="text-xl font-semibold mb-2">Advanced Supply and Demand Analysis</h3>
+                  <p className="text-white">Identify key market turning points with our state-of-the-art supply and demand zone detection.</p>
+                </div>
+                <div className="bg-gradient-to-br from-purple-500 to-pink-600 p-6 rounded-lg shadow-lg">
+                  <h3 className="text-xl font-semibold mb-2">Real-Time Trading Dashboard</h3>
+                  <p className="text-white">Get a comprehensive view of your trades with live updates on price, profit, time frame, and more.</p>
+                </div>
+                <div className="bg-gradient-to-br from-yellow-500 to-red-600 p-6 rounded-lg shadow-lg">
+                  <h3 className="text-xl font-semibold mb-2">Instant Trade Management</h3>
+                  <p className="text-white">Take control of your positions with our 'Close All EA' feature, allowing for quick exits when needed.</p>
+                </div>
+                <div className="bg-gradient-to-br from-green-500 to-teal-600 p-6 rounded-lg shadow-lg">
+                  <h3 className="text-xl font-semibold mb-2">Enhanced Non-Repaint Algorithm</h3>
+                  <p className="text-white">Experience even more reliable signals with our improved non-repaint technology.</p>
+                </div>
+              </div>
+            </section>
+
+            <section className="mb-12">
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+                <div className="md:w-1/2">
+                  <h2 className="text-3xl font-bold mb-4">Transform Your Trading Strategy</h2>
+                  <p className="mb-4 text-lg">Forexhip Scalper v3 isn't just an indicator; it's your gateway to consistent profitability in the Forex market. Our cutting-edge tools are designed to give you a significant advantage:</p>
+                  <ul className="list-disc list-inside mb-4 space-y-2">
+                    <li>Precise entry and exit points based on supply and demand</li>
+                    <li>Real-time market analysis across multiple timeframes</li>
+                    <li>Instant trade management for quick risk mitigation</li>
+                    <li>Comprehensive dashboard for informed decision-making</li>
+                    <li>Non-repaint signals for reliable trade execution</li>
+                  </ul>
+                  <p className="text-lg font-semibold">Don't let another profitable trade slip away. Upgrade your trading arsenal today!</p>
+                </div>
+                <div className="md:w-1/2">
+                  <img src={productScreenshotSrc} alt="Forexhip Scalper v3 Dashboard" className="rounded-lg shadow-lg" />
+                </div>
+              </div>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-3xl font-bold text-center mb-6">See Forexhip Scalper v3 in Action</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {additionalPhotos.map((photo, index) => (
+                  <img key={index} src={photo} alt={`Forexhip Scalper v3 Visual ${index + 1}`} className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300" />
+                ))}
+              </div>
+            </section>
+
+            <section id="installation-video" className="mb-12">
+              <h2 className="text-3xl font-bold text-center mb-6">Quick and Easy Installation</h2>
+              <p className="text-center mb-4 text-lg">Watch our step-by-step guide to get Forexhip Scalper v3 up and running in minutes:</p>
+              <div className="aspect-w-16 aspect-h-9">
+                <iframe
+                  src="https://www.youtube.com/embed/q7MgSdTgui0"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full rounded-lg shadow-lg"
+                ></iframe>
+              </div>
+            </section>
+
+            <section id="testimonials" className="mb-12">
+              <h2 className="text-3xl font-bold text-center mb-6">Success Stories from Our Traders</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Testimonial 
+                  name="Sarah Johnson"
+                  role="Professional Forex Trader"
+                  text="Forexhip Scalper v3 has been a game-changer for my trading career. The supply and demand analysis is spot-on, and the live dashboard keeps me in control of my trades like never before. My win rate has increased by 30% since I started using it!"
+                />
+                <Testimonial 
+                  name="Michael Anderson"
+                  role="Retail Forex Investor"
+                  text="As a part-time trader, I needed something reliable and easy to use. Forexhip Scalper v3 delivered beyond my expectations. The non-repaint signals are incredibly accurate, and the one-click trade management saves me precious time. It's worth every penny!"
+                />
+                <Testimonial 
+                  name="Emily Chen"
+                  role="Forex Fund Manager"
+                  text="I've used many indicators over the years, but Forexhip Scalper v3 stands out. The multi-timeframe analysis gives me a comprehensive view of the market, and the accuracy of the signals is impressive. It's now an integral part of my trading strategy."
+                />
+                <Testimonial 
+                  name="David Müller"
+                  role="Experienced Scalper"
+                  text="The speed and accuracy of Forexhip Scalper v3 are unmatched. I can confidently take quick trades knowing I have reliable signals and instant trade management at my fingertips. My profitability has soared since incorporating this tool into my trading."
+                />
+              </div>
+            </section>
+
+            <section id="faq" className="mb-12">
+              <h2 className="text-3xl font-bold text-center mb-6">Frequently Asked Questions</h2>
+              <div className="space-y-4">
+                {[
+                  {
+                    q: "Is Forexhip Scalper v3 suitable for beginners?",
+                    a: "Absolutely! While Forexhip Scalper v3 is powerful enough for professional traders, its user-friendly interface and clear signals make it perfect for beginners too. We also provide comprehensive guides and support to help you get started."
+                  },
+                  {
+                    q: "How does the supply and demand analysis work?",
+                    a: "Our advanced algorithm analyzes market structure to identify key supply and demand zones. These zones are areas where price is likely to reverse, providing you with high-probability entry and exit points for your trades."
+                  },
+                  {
+                    q: "Can I use Forexhip Scalper v3 with any broker?",
+                    a: "Yes, Forexhip Scalper v3 is compatible with any broker that supports MetaTrader 4 (MT4). This includes most major Forex brokers worldwide."
+                  },
+                  {
+                    q: "What kind of support do you offer after purchase?",
+                    a: "We provide 24/7 customer support via Telegram. Our team of experienced traders and technical experts are always ready to assist you with installation, setup, and any questions you may have about using the indicator."
+                  },
+                  {
+                    q: "Is this work on mt5?",
+                    a: "For now its only works in Mt4,you can open account in any broker support mt4."
+                  }
+                ].map((item, index) => (
+                  <div key={index} className="bg-white bg-opacity-10 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold mb-2">{item.q}</h3>
+                    <p className="text-gray-300">{item.a}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section id="contact" className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Ready to Elevate Your Trading?</h2>
+              <p className="mb-6 text-lg">Join thousands of successful traders using Forexhip Scalper v3. Get started today and transform your trading journey!</p>
+              <div className="flex flex-col items-center justify-center gap-4">
+                <BitcoinPaymentButton />
+                <AlternativePaymentButton />
+                <MessageAdminButton />
+              </div>
+            </section>
+          </main>
+
+          <footer className="bg-gray-900 py-6">
+            <div className="container mx-auto px-4 text-center text-sm">
+              <p>&copy; 2024 Forexhip. All rights reserved.</p>
+              <div className="mt-2">
+                <a href="https://t.me/forexhipadmin" className="text-teal-400 hover:text-teal-300 transition duration-300">
+                  Telegram Support 24/7
+                </a>
+              </div>
+            </div>
+          </footer>
+        </div>
+      );
+    };
+
+    // Render the LandingPage component
+    ReactDOM.createRoot(document.getElementById('root')).render(<LandingPage />);
+    
+  </script>
+</body>
+</html>
