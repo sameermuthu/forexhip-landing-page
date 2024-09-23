@@ -3,26 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forexhip Scalper v3 - Secure Payment</title>
+    <title>Forexhip Scalper v3 - Secure Bitcoin Payment</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        @keyframes gradient {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient 15s ease infinite;
         }
     </style>
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-blue-900 to-teal-900 min-h-screen flex items-center justify-center p-4">
     <div class="bg-white bg-opacity-10 p-8 rounded-xl shadow-2xl max-w-md w-full backdrop-blur-md">
+        <img src="logo.png" alt="Forexhip Logo" class="w-20 h-20 mx-auto mb-6">
         <h1 class="text-3xl font-bold text-white mb-6 text-center">Forexhip Scalper v3</h1>
-        <div class="bg-yellow-400 text-gray-900 rounded-lg p-4 mb-6 text-center animate-pulse">
+        <div class="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white rounded-lg p-4 mb-6 text-center animate-gradient">
             <p class="font-bold text-xl">Secure Bitcoin Payment</p>
             <p class="text-sm mt-2">You're about to make a secure payment</p>
         </div>
-        <div class="text-white mb-6">
-            <p class="mb-2"><strong>Product:</strong> Forexhip Scalper v3</p>
-            <p class="mb-2"><strong>Price:</strong> $69 USD</p>
-            <p class="mb-2"><strong>Payment Method:</strong> Bitcoin</p>
+        <div class="text-white mb-6 space-y-2">
+            <p><strong>Product:</strong> Forexhip Scalper v3</p>
+            <p><strong>Price:</strong> $69 USD</p>
+            <p><strong>Payment Method:</strong> Bitcoin</p>
+            <p class="text-sm text-gray-300 mt-4">Your payment will be processed securely through our trusted payment partner.</p>
         </div>
         <button id="proceedButton" class="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white font-bold py-3 px-4 rounded-lg hover:from-yellow-500 hover:via-orange-600 hover:to-red-600 transition duration-300 ease-in-out transform hover:scale-105">
             Proceed to Payment
