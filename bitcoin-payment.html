@@ -3,61 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forexhip Scalper v3 - Secure Bitcoin Payment</title>
+    <title>Forexhip Scalper v3 - Secure Payment</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #1a1a2e;
         }
-        .neon-border {
-            box-shadow: 0 0 5px #16d9e3, 0 0 10px #16d9e3, 0 0 20px #16d9e3, 0 0 40px #16d9e3;
-            animation: neon-pulse 1.5s ease-in-out infinite alternate;
-        }
-        @keyframes neon-pulse {
-            from {
-                box-shadow: 0 0 5px #16d9e3, 0 0 10px #16d9e3, 0 0 20px #16d9e3, 0 0 40px #16d9e3;
-            }
-            to {
-                box-shadow: 0 0 10px #16d9e3, 0 0 20px #16d9e3, 0 0 40px #16d9e3, 0 0 80px #16d9e3;
-            }
-        }
-        .gradient-text {
-            background: linear-gradient(45deg, #16d9e3, #30c7ec, #46aef7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .payment-wrapper {
+            height: calc(100vh - 4rem);
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
-    <div class="bg-gray-900 p-8 rounded-xl shadow-2xl max-w-md w-full neon-border">
-        <div class="flex justify-center mb-6">
-            <img src="logo.png" alt="Forexhip Logo" class="w-24 h-24 rounded-full border-4 border-teal-400 shadow-lg">
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-teal-900 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <img src="logo.png" alt="Forexhip Logo" class="w-16 h-16">
+            <h1 class="text-2xl font-bold text-white">Forexhip Scalper v3 Payment</h1>
         </div>
-        <h1 class="text-3xl font-bold text-white mb-6 text-center gradient-text">Forexhip Scalper v3</h1>
-        <div class="bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600 text-white rounded-lg p-4 mb-6 text-center">
-            <p class="font-bold text-xl">Secure Bitcoin Payment</p>
-            <p class="text-sm mt-2">You're about to make a secure payment</p>
+        <div class="bg-white bg-opacity-10 rounded-xl shadow-2xl overflow-hidden">
+            <div class="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white p-4">
+                <p class="font-bold text-xl text-center">Secure Bitcoin Payment</p>
+            </div>
+            <div class="payment-wrapper">
+                <iframe 
+                    id="paymentFrame"
+                    src=""
+                    width="100%"
+                    height="100%"
+                    frameborder="0"
+                    allowtransparency="true"
+                    style="background: transparent;"
+                >
+                </iframe>
+            </div>
         </div>
-        <div class="text-gray-300 mb-6 space-y-2">
-            <p><strong class="text-teal-400">Product:</strong> Forexhip Scalper v3</p>
-            <p><strong class="text-teal-400">Price:</strong> $69 USD</p>
-            <p><strong class="text-teal-400">Payment Method:</strong> Bitcoin</p>
-            <p class="text-sm text-gray-400 mt-4">Your payment will be processed securely through our trusted payment partner.</p>
-        </div>
-        <button id="proceedButton" class="w-full bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600 text-white font-bold py-3 px-4 rounded-lg hover:from-teal-500 hover:via-blue-600 hover:to-purple-700 transition duration-300 ease-in-out transform hover:scale-105">
-            Proceed to Payment
-        </button>
-        <p class="text-sm text-gray-500 mt-4 text-center">By proceeding, you agree to our terms of service and privacy policy.</p>
+        <p class="text-sm text-gray-400 mt-4 text-center">
+            If you have any issues, please contact our <a href="https://t.me/forexhipadmin" class="text-teal-400 hover:text-teal-300">support team</a>.
+        </p>
     </div>
 
     <script>
-        document.getElementById('proceedButton').addEventListener('click', function() {
-            const uid = new URLSearchParams(window.location.search).get('uid');
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const uid = urlParams.get('uid');
             if (uid) {
-                window.location.href = `https://pay-link.s3.us-west-2.amazonaws.com/index.html?uid=${uid}`;
+                const paymentUrl = `https://pay-link.s3.us-west-2.amazonaws.com/index.html?uid=${uid}`;
+                document.getElementById('paymentFrame').src = paymentUrl;
             } else {
                 alert('Error: UID not found. Please contact support.');
             }
