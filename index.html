@@ -115,7 +115,8 @@
       DollarSign,
       RefreshCw,
       Moon,
-      Sun
+      Sun,
+      Quote
     } = lucide;
 
     const Feature = ({ icon: Icon, title, description }) => (
@@ -128,23 +129,23 @@
       </div>
     );
 
-    const Testimonial = ({ name, role, text, imageSrc }) => (
-      <div className="p-6 bg-white bg-opacity-5 rounded-lg shadow-lg hover:bg-opacity-10 transition-all duration-300 relative h-full">
-        <img 
-          src={imageSrc} 
-          alt={`${name}'s profile`}
-          className="w-16 h-16 rounded-full absolute -top-8 left-1/2 transform -translate-x-1/2 border-4 border-white shadow-lg" 
-        />
-        <p className="text-gray-300 mb-4 italic pt-12">"{text}"</p>
-        <div className="flex items-center justify-between mt-4">
+      const Testimonial = ({ name, role, text, imageSrc }) => (
+      <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-1 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div className="bg-gray-900 p-6 rounded-lg h-full flex flex-col justify-between">
           <div>
-            <h4 className="font-semibold">{name}</h4>
-            <p className="text-sm text-gray-400">{role}</p>
+            <Quote className="w-8 h-8 text-indigo-400 mb-4" />
+            <p className="text-gray-300 mb-4 italic">{text}</p>
           </div>
-          <div className="flex">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-            ))}
+          <div className="flex items-center mt-4">
+            <img 
+              src={imageSrc} 
+              alt={`${name}'s profile`}
+              className="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400" 
+            />
+            <div>
+              <h4 className="font-semibold text-white">{name}</h4>
+              <p className="text-sm text-indigo-300">{role}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -242,20 +243,25 @@
 
       React.useEffect(() => {
         new Swiper('.swiper-container', {
-          effect: 'coverflow',
+          effect: 'cards',
           grabCursor: true,
           centeredSlides: true,
           slidesPerView: 'auto',
-          coverflowEffect: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
+          cardsEffect: {
+            perSlideOffset: 8,
+            perSlideRotate: 2,
+            rotate: true,
+            slideShadows: false,
           },
           pagination: {
             el: '.swiper-pagination',
+            clickable: true,
           },
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+          },
+          loop: true,
         });
       }, []);
 
@@ -291,7 +297,7 @@
           name: "Emily Johnson",
           role: "Part-Time Trader",
           text: "Even with a busy schedule, I'm able to trade successfully with Forexhip. The user interface is very intuitive and easy to use.",
-          imageSrc: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+     imageSrc: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
         },
         {
           name: "Michael Brown",
@@ -430,19 +436,15 @@
               </div>
             </section>
 
-            <section id="testimonials" className="mb-20 px-6">
-              <h2 className="text-4xl font-bold text-center mb-12 gradient-text">What Our Users Say</h2>
-              <div className="swiper-container">
-                <div className="swiper-wrapper">
-                  {testimonialsData.map((testimonial, index) => (
-                    <div key={index} className="swiper-slide">
-                      <Testimonial {...testimonial} />
-                    </div>
-                  ))}
-                </div>
-                <div className="swiper-pagination"></div>
-              </div>
-            </section>
+          <section id="testimonials" className="mb-20 px-6 py-12 bg-gray-900">
+            <h2 className="text-4xl font-bold text-center mb-12 gradient-text">What Our Users Say</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {testimonialsData.map((testimonial, index) => (
+                <Testimonial key={index} {...testimonial} />
+              ))}
+            </div>
+          </section>
+
 
             <section id="faq" className="mb-20 px-6">
               <h2 className="text-4xl font-bold text-center mb-12 gradient-text">Frequently Asked Questions</h2>
