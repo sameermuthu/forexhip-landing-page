@@ -1,0 +1,8 @@
+# robots.txt for https://www.forexhip.com
+
+# Allow all crawlers access to everything
+User-agent: *
+Disallow:
+
+# Specify the location of the sitemap
+Sitemap: https://www.forexhip.com/sitemap.xml
