@@ -18,55 +18,53 @@
   <meta name="twitter:title" content="Forexhip V4 - Professional Forex Trading EA | Advanced Multi-TP System">
   <meta name="twitter:description" content="Elevate your Forex trading with our professional EA. Dual take-profit system, advanced risk management, and lifetime access with one-time payment!">
   <meta name="twitter:image" content="https://www.forexhip.com/images/forexhip-v4-twitter.jpg">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#1E40AF">
-  <link rel="manifest" href="/manifest.json">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   
-  <script type="module">
-    import * as lucide from 'https://cdn.skypack.dev/lucide-react';
-    window.lucide = lucide;
-  </script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #042f2e 100%);
+      min-height: 100vh;
     }
+    
+    /* Fix gradient text animation */
     .gradient-text {
-      background: linear-gradient(45deg, #10B981, #3B82F6);
+      background: linear-gradient(135deg, #10B981, #3B82F6, #8B5CF6);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: gradientText 5s ease infinite;
     }
-    .hero-gradient {
-      background: radial-gradient(circle at top left, #1E40AF, #1E3A8A);
-    }
-    .feature-card {
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-    }
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-    .animated-gradient {
-      background: linear-gradient(270deg, #3B82F6, #10B981, #3B82F6);
-      background-size: 200% 200%;
-      animation: gradientShift 10s ease infinite;
-    }
-    @keyframes gradientShift {
+    
+    /* Optimize animations */
+    @keyframes gradientText {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+    
+    /* Fix glass effect */
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+    
+    /* Fix sticky header */
     .sticky-header {
       position: fixed;
       top: 0;
@@ -74,191 +72,606 @@
       right: 0;
       z-index: 1000;
       transition: all 0.3s ease;
-    }
-    .sticky-header.scrolled {
-      background-color: rgba(17, 24, 39, 0.9);
+      background: rgba(17, 24, 39, 0.8);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
-    .cta-section {
-      background: linear-gradient(45deg, #4F46E5, #10B981);
+    
+    .sticky-header.scrolled {
+      background: rgba(17, 24, 39, 0.95);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
+    
+    /* Fix feature cards */
+    .feature-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Fix testimonial cards */
+    .testimonial-card {
+      transition: transform 0.3s ease;
+      background: rgba(17, 24, 39, 0.6);
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    /* Fix buttons */
+    .bitcoin-button {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .bitcoin-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Fix FAQ items */
+    .faq-item {
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    
+    .faq-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Fix floating action button */
     .floating-action-button {
       position: fixed;
       bottom: 20px;
       right: 20px;
       z-index: 1000;
     }
-    .dark {
-      background-color: #1F2937;
-      color: #F3F4F6;
+    
+    .floating-action-button a {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
-    .dark .feature-card {
-      background-color: rgba(31, 41, 55, 0.5);
+    
+    .floating-action-button a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
-    .dark .bg-white {
-      background-color: #374151;
+    
+    /* Fix images */
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.75rem;
     }
-    .dark .text-gray-900 {
-      color: #F3F4F6;
-    }
-    .swiper-container {
-      width: 100%;
-      padding-top: 50px;
-      padding-bottom: 50px;
-    }
-    .swiper-slide {
-      background-position: center;
-      background-size: cover;
-      width: 300px;
-      height: 300px;
+    
+    /* Fix mobile responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      
+      .feature-card {
+        margin-bottom: 1rem;
+      }
+      
+      .testimonial-card {
+        margin-bottom: 1.5rem;
+      }
     }
   </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-emerald-900 text-white transition-colors duration-300">
-  <div id="root"></div>
-
-  <script type="text/babel">
-    const {
-      ChevronRight,
-      Check,
-      BarChart2,
-      Clock,
-      Target,
-      MessageCircle,
-      Star,
-      ExternalLink,
-      Send,
-      TrendingUp,
-      DollarSign,
-      RefreshCw,
-      Moon,
-      Sun,
-      Quote
-    } = lucide;
-
-    const Feature = ({ icon: Icon, title, description }) => (
-      <div className="flex flex-col sm:flex-row items-center p-6 bg-white bg-opacity-5 rounded-lg shadow-lg hover:bg-opacity-10 transition-all duration-300 feature-card">
-        <Icon className="w-12 h-12 text-emerald-400 mb-4 sm:mb-0 sm:mr-6 flex-shrink-0" />
-        <div className="text-center sm:text-left">
-          <h3 className="text-xl font-semibold mb-2">{title}</h3>
-          <p className="text-gray-300">{description}</p>
+<body class="min-h-screen text-white transition-colors duration-300">
+  <header class="sticky-header glass-effect">
+    <nav class="container mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center">
+          <img src="./logo.png" alt="Forexhip Logo" class="w-12 h-12 rounded-full mr-3">
+          <h1 class="text-2xl font-bold gradient-text">Forexhip</h1>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="#features" class="hover:text-emerald-400 transition duration-300">Features</a>
+          <a href="#testimonials" class="hover:text-emerald-400 transition duration-300">Testimonials</a>
+          <a href="#faq" class="hover:text-emerald-400 transition duration-300">FAQ</a>
+          <a href="#contact" class="hover:text-emerald-400 transition duration-300">Contact</a>
+          <button id="darkModeToggle" class="text-gray-300 hover:text-white transition-colors duration-300">
+            <i data-lucide="moon" class="w-6 h-6"></i>
+          </button>
         </div>
       </div>
-    );
+    </nav>
+  </header>
 
-    const Testimonial = ({ name, role, text, imageSrc }) => (
-      <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-1 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div className="bg-gray-900 p-6 rounded-lg h-full flex flex-col justify-between">
-          <div>
-            <Quote className="w-8 h-8 text-indigo-400 mb-4" />
-            <p className="text-gray-300 mb-4 italic">{text}</p>
-          </div>
-          <div className="flex items-center mt-4">
-            <img 
-              src={imageSrc} 
-              alt={`${name}'s profile`}
-              className="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400" 
-            />
-            <div>
-              <h4 className="font-semibold text-white">{name}</h4>
-              <p className="text-sm text-indigo-300">{role}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-
-    const BitcoinPaymentButton = () => (
-      <a
-        href="https://pay-link.s3.us-west-2.amazonaws.com/index.html?uid=a71b0222efe3451f"
-        className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-full overflow-hidden shadow-lg transition-all duration-300 ease-out hover:scale-105 w-full sm:w-auto animate-pulse hover:animate-none"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 opacity-70 blur-lg filter group-hover:opacity-100 transition-opacity duration-300"></span>
-        <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-30 h-1/3"></span>
-        <span className="relative flex items-center">
-          <span className="mr-3 text-2xl">₿</span>
-          <span className="mr-3">Buy Now with Bitcoin</span>
-          <span className="bg-white text-orange-500 px-3 py-1 rounded-full text-sm font-normal">$89</span>
-        </span>
-      </a>
-    );
-
-    const AlternativePaymentButton = () => (
-      <a
-        href="https://t.me/forexhipadmin"
-        className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-emerald-400 bg-transparent border-2 border-emerald-400 rounded-full hover:bg-emerald-400 hover:text-white transition-colors duration-300 w-full sm:w-auto"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Don't have BTC? Click here for alternatives
-      </a>
-    );
-
-    const MessageAdminButton = () => (
-      <a
-        href="https://t.me/forexhipadmin"
-        className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-300 w-full sm:w-auto"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Send className="w-5 h-5 mr-2" />
-        Message Forexhip Admin For License key 
-      </a>
-    );
-
-    const Footer = ({ logoSrc }) => (
-      <footer className="bg-gray-900 py-12 px-6">
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center mb-6 md:mb-0">
-              <img src={logoSrc} alt="Forexhip Logo" className="w-10 h-10 rounded-full mr-3" />
-              <span className="text-xl font-bold gradient-text">Forexhip</span>
-            </div>
-            <div className="flex space-x-6">
-              <a href="#features" className="text-gray-400 hover:text-emerald-400 transition duration-300">Features</a>
-              <a href="#testimonials" className="text-gray-400 hover:text-emerald-400 transition duration-300">Testimonials</a>
-              <a href="#faq" className="text-gray-400 hover:text-emerald-400 transition duration-300">FAQ</a>
-              <a href="#contact" className="text-gray-400 hover:text-emerald-400 transition duration-300">Contact</a>
-            </div>
-          </div>
-          <div className="mt-8 text-center">
-            <p className="text-gray-400">© 2024 Forexhip. All rights reserved.</p>
-            <a href="https://t.me/forexhipadmin" className="text-emerald-400 hover:text-emerald-300 transition duration-300 mt-2 inline-block">
-              Telegram Support 24/7
-            </a>
-          </div>
-        </div>
-      </footer>
-    );
-
-    const FloatingActionButton = () => (
-      <div className="floating-action-button">
-        <a
-          href="https://pay-link.s3.us-west-2.amazonaws.com/index.html?uid=a71b0222efe3451f"
-          className="flex items-center justify-center w-16 h-16 bg-emerald-500 text-white rounded-full shadow-lg hover:bg-emerald-600 transition-colors duration-300"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <DollarSign className="w-8 h-8" />
+  <main class="pt-24">
+    <section class="text-center mb-20 px-6 hero-gradient py-20" data-aos="fade-up">
+      <h1 class="text-5xl sm:text-6xl font-bold mb-6 text-white">Forexhip V4</h1>
+      <p class="text-xl sm:text-2xl mb-6 max-w-3xl mx-auto text-gray-100">
+        Professional Forex Trading EA with Advanced Multi-TP System
+      </p>
+      <p class="text-lg mb-10 text-emerald-400 font-semibold">
+        One-time Payment - Lifetime Access - Free Updates
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
+        <a href="https://pay-link.s3.us-west-2.amazonaws.com/index.html?uid=a71b0222efe3451f" 
+           class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-full overflow-hidden shadow-lg transition-all duration-300 ease-out hover:scale-105 w-full sm:w-auto animate-pulse hover:animate-none"
+           target="_blank" rel="noopener noreferrer">
+          <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 opacity-70 blur-lg filter group-hover:opacity-100 transition-opacity duration-300"></span>
+          <span class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-30 h-1/3"></span>
+          <span class="relative flex items-center">
+            <span class="mr-3 text-2xl">₿</span>
+            <span class="mr-3">Buy Now with Bitcoin</span>
+            <span class="bg-white text-orange-500 px-3 py-1 rounded-full text-sm font-normal">$89</span>
+          </span>
         </a>
+        
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <a href="https://t.me/forexhipadmin" 
+             class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-emerald-400 bg-transparent border-2 border-emerald-400 rounded-full hover:bg-emerald-400 hover:text-white transition-colors duration-300 w-full sm:w-auto"
+             target="_blank" rel="noopener noreferrer">
+            Don't have BTC? Click here for alternatives
+          </a>
+          
+          <a href="https://t.me/forexhipadmin" 
+             class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-300 w-full sm:w-auto"
+             target="_blank" rel="noopener noreferrer">
+            <i data-lucide="send" class="w-5 h-5 mr-2"></i>
+            Message Forexhip Admin For License key
+          </a>
+        </div>
       </div>
-    );
 
-    const LandingPage = () => {
-      const [isDarkMode, setIsDarkMode] = React.useState(false);
-      const [isHeaderScrolled, setIsHeaderScrolled] = React.useState(false);
+      <a href="#installation-video" 
+         class="py-3 px-8 bg-blue-600 text-white rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 inline-block">
+        Watch Installation Guide
+      </a>
 
-      React.useEffect(() => {
-        const handleScroll = () => {
-          setIsHeaderScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-      }, []);
+      <img src="./screenshot.png" alt="Forexhip Scalper v3 Hero" 
+           class="rounded-lg shadow-2xl mx-auto max-w-full mt-12 animate-float">
+    </section>
 
-      React.useEffect(() => {
+    <section id="features" class="mb-20 px-6" data-aos="fade-up">
+      <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Professional Trading Features</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div class="flex flex-col sm:flex-row items-center p-6 bg-white bg-opacity-5 rounded-lg shadow-lg hover:bg-opacity-10 transition-all duration-300 feature-card">
+          <i data-lucide="bar-chart-2" class="w-12 h-12 text-emerald-400 mb-4 sm:mb-0 sm:mr-6 flex-shrink-0"></i>
+          <div class="text-center sm:text-left">
+            <h3 class="text-xl font-semibold mb-2">Dual Take-Profit System</h3>
+            <p class="text-gray-300">Trade with two take profit levels (TP1 & TP2) with different lot sizes for optimal risk management.</p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center p-6 bg-white bg-opacity-5 rounded-lg shadow-lg hover:bg-opacity-10 transition-all duration-300 feature-card">
+          <i data-lucide="clock" class="w-12 h-12 text-emerald-400 mb-4 sm:mb-0 sm:mr-6 flex-shrink-0"></i>
+          <div class="text-center sm:text-left">
+            <h3 class="text-xl font-semibold mb-2">Advanced Risk Management</h3>
+            <p class="text-gray-300">Set daily profit targets and stop loss limits with automatic trade closure for account protection.</p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center p-6 bg-white bg-opacity-5 rounded-lg shadow-lg hover:bg-opacity-10 transition-all duration-300 feature-card">
+          <i data-lucide="target" class="w-12 h-12 text-emerald-400 mb-4 sm:mb-0 sm:mr-6 flex-shrink-0"></i>
+          <div class="text-center sm:text-left">
+            <h3 class="text-xl font-semibold mb-2">Real-time Monitoring</h3>
+            <p class="text-gray-300">Track your trades, profit/loss, and account status in real-time with our professional interface.</p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center p-6 bg-white bg-opacity-5 rounded-lg shadow-lg hover:bg-opacity-10 transition-all duration-300 feature-card">
+          <i data-lucide="message-circle" class="w-12 h-12 text-emerald-400 mb-4 sm:mb-0 sm:mr-6 flex-shrink-0"></i>
+          <div class="text-center sm:text-left">
+            <h3 class="text-xl font-semibold mb-2">Smart Notifications</h3>
+            <p class="text-gray-300">Stay informed with customizable alerts for TP hits, SL hits, and trade modifications.</p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center p-6 bg-white bg-opacity-5 rounded-lg shadow-lg hover:bg-opacity-10 transition-all duration-300 feature-card">
+          <i data-lucide="trending-up" class="w-12 h-12 text-emerald-400 mb-4 sm:mb-0 sm:mr-6 flex-shrink-0"></i>
+          <div class="text-center sm:text-left">
+            <h3 class="text-xl font-semibold mb-2">Professional Trading Panel</h3>
+            <p class="text-gray-300">Manage your trades easily with our comprehensive trading panel featuring one-click trade management.</p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center p-6 bg-white bg-opacity-5 rounded-lg shadow-lg hover:bg-opacity-10 transition-all duration-300 feature-card">
+          <i data-lucide="dollar-sign" class="w-12 h-12 text-emerald-400 mb-4 sm:mb-0 sm:mr-6 flex-shrink-0"></i>
+          <div class="text-center sm:text-left">
+            <h3 class="text-xl font-semibold mb-2">Martingale Options</h3>
+            <p class="text-gray-300">Optional martingale strategy with safety limits and maximum lot size protection.</p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center p-6 bg-white bg-opacity-5 rounded-lg shadow-lg hover:bg-opacity-10 transition-all duration-300 feature-card">
+          <i data-lucide="refresh-cw" class="w-12 h-12 text-emerald-400 mb-4 sm:mb-0 sm:mr-6 flex-shrink-0"></i>
+          <div class="text-center sm:text-left">
+            <h3 class="text-xl font-semibold mb-2">Flexible Controls</h3>
+            <p class="text-gray-300">Pause/Resume trading, disable TP2, and modify trade parameters with easy-to-use controls.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white bg-opacity-5 rounded-xl p-8 max-w-4xl mx-auto">
+        <h3 class="text-2xl font-bold mb-6 text-center text-emerald-400">Complete Feature List</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h4 class="text-xl font-semibold mb-4 text-blue-400">Trading Features</h4>
+            <ul class="space-y-2">
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Dual Take-Profit System (TP1 & TP2)
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Different Lot Sizes for Each TP
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Automatic Breakeven After TP1
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                One-Click TP2 Disable Option
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Optional Martingale Strategy
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Customizable Martingale Multiplier
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Maximum Martingale Levels Control
+              </li>
+            </ul>
+            <h4 class="text-xl font-semibold mb-4 mt-8 text-blue-400">Risk Management</h4>
+            <ul class="space-y-2">
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Daily Profit Target
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Daily Stop Loss Limit
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Auto Close on Limits
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Maximum Lot Size Protection
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Real-time P/L Tracking
+              </li>
+            </ul>
+          </div>
+            <div>
+            <h4 class="text-xl font-semibold mb-4 text-blue-400">Professional Tools</h4>
+            <ul class="space-y-2">
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Comprehensive Trading Panel
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Close All Trades Button
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Close Profitable Trades Only
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Close Loss Trades Only
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Close 50% of Profits Option
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Easy SL/TP Modification
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Pause/Resume Trading
+              </li>
+            </ul>
+            <h4 class="text-xl font-semibold mb-4 mt-8 text-blue-400">Additional Features</h4>
+            <ul class="space-y-2">
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Sound Alerts for TP/SL Hits
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                On-chart Notifications
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Trade Status Updates
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Daily P/L Updates
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Draggable Interface Windows
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                Professional License System
+              </li>
+              <li class="flex items-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-400 mr-2"></i>
+                24/7 Support Access
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-20 bg-white bg-opacity-5 py-16 px-6 glass-effect" data-aos="fade-up">
+      <div class="container mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Why Choose Forexhip V4?</h2>
+        <div class="flex flex-col md:flex-row items-center gap-12">
+          <div class="md:w-1/2" data-aos="fade-right">
+            <img src="./images/productphoto.jpg" alt="Product Screenshot" class="rounded-xl shadow-2xl mb-8 max-w-full hover:scale-105 transition-transform duration-500">
+            <p class="text-lg mb-6 text-gray-300">Forexhip V4 is a complete trading solution with professional features and lifetime support.</p>
+          </div>
+          <div class="md:w-1/2" data-aos="fade-left">
+            <h3 class="text-2xl font-semibold mb-6 text-emerald-400">Additional Screenshots:</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <img src="./images/photo1.jpg" alt="Additional Screenshot 1" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-500">
+              <img src="./images/photo2.jpg" alt="Additional Screenshot 2" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-500">
+              <img src="./images/photo3.jpg" alt="Additional Screenshot 3" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-500">
+              <img src="./images/photo4.jpg" alt="Additional Screenshot 4" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-500">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="installation-video" class="mb-20 py-16 px-6 relative overflow-hidden" data-aos="fade-up">
+      <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/50 to-emerald-900/50 backdrop-blur-sm"></div>
+      <div class="container mx-auto relative z-10">
+        <h2 class="text-4xl font-bold text-center mb-8 text-white">Quick and Easy Installation</h2>
+        <p class="text-center mb-12 text-xl text-gray-300">Watch our step-by-step guide to get Forexhip Scalper v3 up and running in minutes:</p>
+        <div class="max-w-4xl mx-auto">
+          <div class="relative rounded-xl overflow-hidden shadow-2xl" style="padding-bottom:56.25%;height:0">
+            <iframe id="js_video_iframe" 
+                    src="https://player.vimeo.com/video/1040417599?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+                    frameborder="0" 
+                    allowfullscreen 
+                    style="position:absolute;top:0;left:0;width:100%;height:100%"
+                    class="rounded-xl"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="mb-20 px-6 py-12 glass-effect" data-aos="fade-up">
+      <h2 class="text-4xl font-bold text-center mb-12 gradient-text">What Our Users Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div class="testimonial-card relative glass-effect p-1 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+          <div class="bg-gray-900 p-6 rounded-lg h-full flex flex-col justify-between">
+            <div>
+              <i data-lucide="quote" class="w-8 h-8 text-indigo-400 mb-4"></i>
+              <p class="text-gray-300 mb-4 italic">Forexhip Scalper v3 has completely transformed my trading strategy! I'm seeing consistent profits for the first time.</p>
+            </div>
+            <div class="flex items-center mt-4">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Jane Doe's profile" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+              <div>
+                <h4 class="font-semibold text-white">Jane Doe</h4>
+                <p class="text-sm text-indigo-300">Forex Trader</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card relative glass-effect p-1 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+          <div class="bg-gray-900 p-6 rounded-lg h-full flex flex-col justify-between">
+            <div>
+              <i data-lucide="quote" class="w-8 h-8 text-indigo-400 mb-4"></i>
+              <p class="text-gray-300 mb-4 italic">I achieved consistent profits thanks to the high accuracy signals. This indicator is a game-changer.</p>
+            </div>
+            <div class="flex items-center mt-4">
+              <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80" alt="John Smith's profile" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+              <div>
+                <h4 class="font-semibold text-white">John Smith</h4>
+                <p class="text-sm text-indigo-300">Professional Trader</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card relative glass-effect p-1 rounded-xl" data-aos="fade-up" data-aos-delay="300">
+          <div class="bg-gray-900 p-6 rounded-lg h-full flex flex-col justify-between">
+            <div>
+              <i data-lucide="quote" class="w-8 h-8 text-indigo-400 mb-4"></i>
+              <p class="text-gray-300 mb-4 italic">Even with a busy schedule, I'm able to trade successfully with Forexhip. The user interface is very intuitive and easy to use.</p>
+            </div>
+            <div class="flex items-center mt-4">
+              <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80" alt="Emily Johnson's profile" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+              <div>
+                <h4 class="font-semibold text-white">Emily Johnson</h4>
+                <p class="text-sm text-indigo-300">Part-Time Trader</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card relative glass-effect p-1 rounded-xl" data-aos="fade-up" data-aos-delay="400">
+          <div class="bg-gray-900 p-6 rounded-lg h-full flex flex-col justify-between">
+            <div>
+              <i data-lucide="quote" class="w-8 h-8 text-indigo-400 mb-4"></i>
+              <p class="text-gray-300 mb-4 italic">I've tried various indicators, but Forexhip is by far the best! The support team is also very responsive and helpful.</p>
+            </div>
+            <div class="flex items-center mt-4">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Michael Brown's profile" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+              <div>
+                <h4 class="font-semibold text-white">Michael Brown</h4>
+                <p class="text-sm text-indigo-300">Investor</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="mb-20 px-6" data-aos="fade-up">
+      <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Frequently Asked Questions</h2>
+      <div class="glass-effect p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
+        <div class="space-y-6">
+          <details class="group faq-item rounded-lg p-4">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+              <span>Is this a one-time payment?</span>
+              <span class="transition group-open:rotate-180">
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+              </span>
+            </summary>
+            <p class="text-gray-300 mt-3 group-open:animate-fadeIn">Yes, Forexhip V4 is available for a one-time payment of $89. This includes lifetime access to the EA and all future updates.</p>
+          </details>
+          <details class="group faq-item rounded-lg p-4">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+              <span>Does this support MT5?</span>
+              <span class="transition group-open:rotate-180">
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+              </span>
+            </summary>
+            <p class="text-gray-300 mt-3 group-open:animate-fadeIn">At this time, Forexhip V4 only supports MT4. You can open an account with any broker that offers MT4 to use our EA.</p>
+          </details>
+          <details class="group faq-item rounded-lg p-4">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+              <span>What is Forexhip V4?</span>
+              <span class="transition group-open:rotate-180">
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+              </span>
+            </summary>
+            <p class="text-gray-300 mt-3 group-open:animate-fadeIn">It's a professional Forex trading EA with advanced features including dual take-profit system, risk management, and real-time monitoring. Perfect for both beginners and experienced traders.</p>
+          </details>
+          <details class="group faq-item rounded-lg p-4">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+              <span>Do I need prior trading experience?</span>
+              <span class="transition group-open:rotate-180">
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+              </span>
+            </summary>
+            <p class="text-gray-300 mt-3 group-open:animate-fadeIn">No, Forexhip V4 is user-friendly and suitable for all experience levels. Our comprehensive interface and clear documentation make it easy to start trading.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" class="mb-20 cta-section py-16 px-6 text-center relative overflow-hidden" data-aos="fade-up">
+      <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/30 to-emerald-600/30 backdrop-blur-sm"></div>
+      <div class="relative z-10">
+        <h2 class="text-4xl font-bold mb-8 text-white">Ready to Revolutionize Your Trading?</h2>
+        <p class="mb-8 text-xl text-gray-200">Join thousands of successful traders using Forexhip Scalper v3</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-6">
+          <a href="https://pay-link.s3.us-west-2.amazonaws.com/index.html?uid=a71b0222efe3451f" 
+             class="bitcoin-button group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-full overflow-hidden shadow-lg transition-all duration-300 ease-out hover:scale-105 w-full sm:w-auto"
+             target="_blank" rel="noopener noreferrer">
+            <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 opacity-70 blur-lg filter group-hover:opacity-100 transition-opacity duration-300"></span>
+            <span class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-30 h-1/3"></span>
+            <span class="relative flex items-center">
+              <span class="mr-3 text-2xl">₿</span>
+              <span class="mr-3">Buy Now with Bitcoin</span>
+              <span class="bg-white text-orange-500 px-3 py-1 rounded-full text-sm font-normal">$89</span>
+            </span>
+          </a>
+          <a href="https://t.me/forexhipadmin" 
+             class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-300 w-full sm:w-auto"
+             target="_blank" rel="noopener noreferrer">
+            <i data-lucide="send" class="w-5 h-5 mr-2"></i>
+            Message Forexhip Admin For License key
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="mb-20 px-6 text-center" data-aos="fade-up">
+      <h2 class="text-4xl font-bold mb-8 gradient-text">Get in Touch</h2>
+      <p class="mb-8 text-xl text-gray-300">Have questions or need support? Our team is here to help you 24/7.</p>
+      <a href="https://t.me/forexhipadmin" 
+         class="inline-flex items-center bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-emerald-600 hover:to-blue-600 transition duration-300 transform hover:scale-105"
+         target="_blank" rel="noopener noreferrer">
+        <i data-lucide="message-circle" class="mr-2"></i>
+        Contact Forexhip Admin
+      </a>
+    </section>
+  </main>
+
+  <footer class="bg-gray-900 bg-opacity-50 backdrop-blur-lg py-12 px-6 glass-effect">
+    <div class="container mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center mb-6 md:mb-0">
+          <img src="./logo.png" alt="Forexhip Logo" class="w-10 h-10 rounded-full mr-3">
+          <span class="text-xl font-bold gradient-text">Forexhip</span>
+        </div>
+        <div class="flex space-x-6">
+          <a href="#features" class="text-gray-400 hover:text-emerald-400 transition duration-300">Features</a>
+          <a href="#testimonials" class="text-gray-400 hover:text-emerald-400 transition duration-300">Testimonials</a>
+          <a href="#faq" class="text-gray-400 hover:text-emerald-400 transition duration-300">FAQ</a>
+          <a href="#contact" class="text-gray-400 hover:text-emerald-400 transition duration-300">Contact</a>
+        </div>
+        <div class="mt-8 text-center">
+          <p class="text-gray-400">© 2024 Forexhip. All rights reserved.</p>
+          <a href="https://t.me/forexhipadmin" class="text-emerald-400 hover:text-emerald-300 transition duration-300 mt-2 inline-block">Telegram Support 24/7</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-action-button">
+    <a href="https://pay-link.s3.us-west-2.amazonaws.com/index.html?uid=a71b0222efe3451f" 
+       class="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 text-white rounded-full shadow-lg hover:from-emerald-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-110"
+       target="_blank" rel="noopener noreferrer">
+      <i data-lucide="dollar-sign" class="w-8 h-8"></i>
+    </a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 50,
+        disable: window.innerWidth < 768
+      });
+      
+      lucide.createIcons();
+    });
+    
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const icon = darkModeToggle.querySelector('i');
+      if (document.body.classList.contains('dark')) {
+        icon.setAttribute('data-lucide', 'sun');
+      } else {
+        icon.setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+    });
+
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.sticky-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
         new Swiper('.swiper-container', {
           effect: 'cards',
           grabCursor: true,
@@ -280,390 +693,6 @@
           },
           loop: true,
         });
-      }, []);
-
-      const toggleDarkMode = () => {
-        setIsDarkMode(!isDarkMode);
-        document.body.classList.toggle('dark');
-      };
-
-      const logoSrc = "./logo.png";
-      const heroImageSrc = "./screenshot.png";
-      const productScreenshotSrc = "./images/productphoto.jpg";
-      const additionalPhotos = [
-        "./images/photo1.jpg",
-        "./images/photo2.jpg",
-        "./images/photo3.jpg",
-        "./images/photo4.jpg"
-      ];
-
-      const testimonialsData = [
-        {
-          name: "Jane Doe",
-          role: "Forex Trader",
-          text: "Forexhip Scalper v3 has completely transformed my trading strategy! I'm seeing consistent profits for the first time.",
-          imageSrc: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-        },
-        {
-          name: "John Smith",
-          role: "Professional Trader",
-          text: "I achieved consistent profits thanks to the high accuracy signals. This indicator is a game-changer.",
-          imageSrc: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
-        },
-        {
-          name: "Emily Johnson",
-          role: "Part-Time Trader",
-          text: "Even with a busy schedule, I'm able to trade successfully with Forexhip. The user interface is very intuitive and easy to use.",
-          imageSrc: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
-        },
-        {
-          name: "Michael Brown",
-          role: "Investor",
-          text: "I've tried various indicators, but Forexhip is by far the best! The support team is also very responsive and helpful.",
-          imageSrc: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
-        }
-      ];
-
-      return (
-        <div className={isDarkMode ? 'dark' : ''}>
-          <header className={`sticky-header ${isHeaderScrolled ? 'scrolled' : ''}`}>
-            <nav className="container mx-auto px-6 py-4">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center">
-                  <img src={logoSrc} alt="Forexhip Logo" className="w-12 h-12 rounded-full mr-3" />
-                  <h1 className="text-2xl font-bold gradient-text">Forexhip</h1>
-                </div>
-                <div className="hidden md:flex space-x-6">
-                  <a href="#features" className="hover:text-emerald-400 transition duration-300">Features</a>
-                  <a href="#testimonials" className="hover:text-emerald-400 transition duration-300">Testimonials</a>
-                  <a href="#faq" className="hover:text-emerald-400 transition duration-300">FAQ</a>
-                  <a href="#contact" className="hover:text-emerald-400 transition duration-300">Contact</a>
-                  <button onClick={toggleDarkMode} className="text-gray-300 hover:text-white transition-colors duration-300">
-                    {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
-                  </button>
-                </div>
-              </div>
-            </nav>
-          </header>
-
-          <main className="pt-24">
-            <section className="text-center mb-20 px-6 animated-gradient py-20">
-              <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-white">
-                Forexhip V4
-              </h1>
-              <p className="text-xl sm:text-2xl mb-6 max-w-3xl mx-auto text-gray-100">
-                Professional Forex Trading EA with Advanced Multi-TP System
-              </p>
-              <p className="text-lg mb-10 text-emerald-400 font-semibold">
-                One-time Payment - Lifetime Access - Free Updates
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
-                <BitcoinPaymentButton />
-                <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                  <AlternativePaymentButton />
-                  <MessageAdminButton />
-                </div>
-              </div>
-              <a href="#installation-video" className="py-3 px-8 bg-blue-600 text-white rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 inline-block">
-                Watch Installation Guide
-              </a>
-              <img src={heroImageSrc} alt="Forexhip Scalper v3 Hero" className="rounded-lg shadow-2xl mx-auto max-w-full mt-12 animate-float" />
-            </section>
-
-            <section id="features" className="mb-20 px-6">
-              <h2 className="text-4xl font-bold text-center mb-12 gradient-text">Professional Trading Features</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                <Feature 
-                  icon={BarChart2}
-                  title="Dual Take-Profit System"
-                  description="Trade with two take profit levels (TP1 & TP2) with different lot sizes for optimal risk management."
-                />
-                <Feature 
-                  icon={Clock}
-                  title="Advanced Risk Management"
-                  description="Set daily profit targets and stop loss limits with automatic trade closure for account protection."
-                />
-                <Feature 
-                  icon={Target}
-                  title="Real-time Monitoring"
-                  description="Track your trades, profit/loss, and account status in real-time with our professional interface."
-                />
-                <Feature 
-                  icon={MessageCircle}
-                  title="Smart Notifications"
-                  description="Stay informed with customizable alerts for TP hits, SL hits, and trade modifications."
-                />
-                <Feature 
-                  icon={TrendingUp}
-                  title="Professional Trading Panel"
-                  description="Manage your trades easily with our comprehensive trading panel featuring one-click trade management."
-                />
-                <Feature 
-                  icon={DollarSign}
-                  title="Martingale Options"
-                  description="Optional martingale strategy with safety limits and maximum lot size protection."
-                />
-                <Feature 
-                  icon={RefreshCw}
-                  title="Flexible Controls"
-                  description="Pause/Resume trading, disable TP2, and modify trade parameters with easy-to-use controls."
-                />
-              </div>
-
-              <div className="bg-white bg-opacity-5 rounded-xl p-8 max-w-4xl mx-auto">
-                <h3 className="text-2xl font-bold mb-6 text-center text-emerald-400">Complete Feature List</h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <h4 className="text-xl font-semibold mb-4 text-blue-400">Trading Features</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Dual Take-Profit System (TP1 & TP2)</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Different Lot Sizes for Each TP</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Automatic Breakeven After TP1</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>One-Click TP2 Disable Option</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Optional Martingale Strategy</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Customizable Martingale Multiplier</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Maximum Martingale Levels Control</span>
-                      </li>
-                    </ul>
-
-                    <h4 className="text-xl font-semibold mb-4 mt-8 text-blue-400">Risk Management</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Daily Profit Target</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Daily Stop Loss Limit</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Auto Close on Limits</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Maximum Lot Size Protection</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Real-time P/L Tracking</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xl font-semibold mb-4 text-blue-400">Professional Tools</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Comprehensive Trading Panel</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Close All Trades Button</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Close Profitable Trades Only</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Close Loss Trades Only</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Close 50% of Profits Option</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Easy SL/TP Modification</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Pause/Resume Trading</span>
-                      </li>
-                    </ul>
-
-                    <h4 className="text-xl font-semibold mb-4 mt-8 text-blue-400">Additional Features</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Sound Alerts for TP/SL Hits</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>On-chart Notifications</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Trade Status Updates</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Daily P/L Updates</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Draggable Interface Windows</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>Professional License System</span>
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-5 h-5 text-emerald-400 mr-2" />
-                        <span>24/7 Support Access</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-20 bg-white bg-opacity-5 py-16 px-6">
-              <div className="container mx-auto">
-                <h2 className="text-4xl font-bold text-center mb-12 gradient-text">Why Choose Forexhip V4?</h2>
-                <div className="flex flex-col md:flex-row items-center gap-12">
-                  <div className="md:w-1/2">
-                    <img src={productScreenshotSrc} alt="Product Screenshot" className="rounded-lg shadow-2xl mb-8 max-w-full hover:scale-105 transition-transform duration-300" />
-                    <p className="text-lg mb-6">Forexhip V4 is a complete trading solution with professional features and lifetime support.</p>
-                  </div>
-                  <div className="md:w-1/2">
-                    <h3 className="text-2xl font-semibold mb-6">Additional Screenshots:</h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      {additionalPhotos.map((src, index) => (
-                        <img key={index} src={src} alt={`Additional Screenshot ${index + 1}`} className="rounded-lg shadow-lg max-w-full hover:scale-105 transition-transform duration-300" />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section id="installation-video" className="mb-20 bg-gradient-to-br from-indigo-900 to-emerald-900 py-16 px-6">
-              <div className="container mx-auto">
-                <h2 className="text-4xl font-bold text-center mb-8 text-white">Quick and Easy Installation</h2>
-                <p className="text-center mb-12 text-xl text-gray-300">Watch our step-by-step guide to get Forexhip Scalper v3 up and running in minutes:</p>
-                <div className="max-w-4xl mx-auto">
-                  <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}> 
-                    <iframe 
-                      id="js_video_iframe" 
-                      src="https://player.vimeo.com/video/1040417599?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                      frameBorder="0" 
-                      allowFullScreen 
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                      }}
-                      className="rounded-lg shadow-2xl"
-                    ></iframe>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section id="testimonials" className="mb-20 px-6 py-12 bg-gray-900">
-              <h2 className="text-4xl font-bold text-center mb-12 gradient-text">What Our Users Say</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                {testimonialsData.map((testimonial, index) => (
-                  <Testimonial key={index} {...testimonial} />
-                ))}
-              </div>
-            </section>
-
-            <section id="faq" className="mb-20 px-6">
-              <h2 className="text-4xl font-bold text-center mb-12 gradient-text">Frequently Asked Questions</h2>
-              <div className="bg-white bg-opacity-5 p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
-                <div className="space-y-6">
-                  {[
-                    {
-                      question: "Is this a one-time payment?",
-                      answer: "Yes, Forexhip V4 is available for a one-time payment of $89. This includes lifetime access to the EA and all future updates."
-                    },
-                    {
-                      question: "Does this support MT5?",
-                      answer: "At this time, Forexhip V4 only supports MT4. You can open an account with any broker that offers MT4 to use our EA."
-                    },
-                    {
-                      question: "What is Forexhip V4?",
-                      answer: "It's a professional Forex trading EA with advanced features including dual take-profit system, risk management, and real-time monitoring. Perfect for both beginners and experienced traders."
-                    },
-                    {
-                      question: "Do I need prior trading experience?",
-                      answer: "No, Forexhip V4 is user-friendly and suitable for all experience levels. Our comprehensive interface and clear documentation make it easy to start trading."
-                    }
-                  ].map((item, index) => (
-                    <details key={index} className="group">
-                      <summary className="flex justify-between items-center font-medium cursor-pointer list-none">
-                        <span>{item.question}</span>
-                        <span className="transition group-open:rotate-180">
-                          <ChevronRight className="w-5 h-5" />
-                        </span>
-                      </summary>
-                      <p className="text-gray-300 mt-3 group-open:animate-fadeIn">
-                        {item.answer}
-                      </p>
-                    </details>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            <section id="cta" className="mb-20 cta-section py-16 px-6 text-center">
-              <h2 className="text-4xl font-bold mb-8 text-white">Ready to Revolutionize Your Trading?</h2>
-              <p className="mb-8 text-xl text-gray-200">Join thousands of successful traders using Forexhip Scalper v3</p>
-              <div className="flex flex-col sm:flex-row justify-center gap-6">
-                <BitcoinPaymentButton />
-                <MessageAdminButton />
-              </div>
-            </section>
-
-            <section id="contact" className="mb-20 px-6 text-center">
-              <h2 className="text-4xl font-bold mb-8 gradient-text">Get in Touch</h2>
-              <p className="mb-8 text-xl text-gray-300">Have questions or need support? Our team is here to help you 24/7.</p>
-              <a 
-                href="https://t.me/forexhipadmin" 
-                className="inline-flex items-center bg-emerald-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-emerald-600 transition duration-300"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MessageCircle className="mr-2" />
-                Contact Forexhip Admin
-              </a>
-            </section>
-          </main>
-
-          <Footer logoSrc={logoSrc} />
-          <FloatingActionButton />
-        </div>
-      );
-    };
-
-    ReactDOM.createRoot(document.getElementById('root')).render(<LandingPage />);
   </script>
 
   <script type="application/ld+json">
